@@ -3,7 +3,7 @@ import path from "path";
 
 export default defineConfig({
   root: "src",
-  base: "./",
+  base: "/Foodly/",
   publicDir: path.resolve(__dirname, "public"),
   css: {
     devSourcemap: true,
