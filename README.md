@@ -2,7 +2,7 @@
 
 Foodly is a demo frontend project for a food delivery service, focused on clean architecture, UX quality, and modern frontend practices.
 
-🔗 Live demo: https://den-dev-web.github.io/Foodly/
+🔗 Live demo: https://den-dev-web.github.io/foodly/
 
 ---
 
