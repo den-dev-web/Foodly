@@ -1,0 +1,95 @@
+/* ===== CRITICAL CSS ===== */
+
+/* Система сетки */
+.o-container {
+  width: min(100% - (var(--layout-container-padding) * 2), var(--layout-container-max));
+  margin-inline: auto;
+}
+
+/* Базовые стили */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "SF Pro Display", system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  padding: var(--space-m) 0;
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Hero */
+.hero {
+  padding: clamp(48px, 10vw, 72px) 0 clamp(32px, 8vw, 56px);
+}
+
+.hero__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  margin-top: var(--space-s);
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+/* Основная кнопка */
+.button--primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  padding: var(--space-s) var(--space-l);
+  border-radius: var(--radius-m);
+  font-weight: 600;
+  color: white;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.button--secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  padding: var(--space-s) var(--space-l);
+  border-radius: var(--radius-m);
+  font-weight: 600;
+  color: white;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

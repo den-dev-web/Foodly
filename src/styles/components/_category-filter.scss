@@ -1,0 +1,118 @@
+/* ===================== CATEGORY FILTER ===================== */
+
+.category-filter {
+  --category-fade-width: clamp(48px, 10vw, 72px);
+
+  position: relative;
+
+  /* Fade зоны будут поверх элементов */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--category-fade-width); /* ширина fade – теперь заметная */
+    pointer-events: none;
+    z-index: 5; /* ВАЖНО: fade выше кнопок */
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  /* Левый fade */
+  &::before {
+    left: 0;
+    background: linear-gradient(
+      to left,
+      rgba(5, 8, 22, 0) 0%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+  }
+
+  /* Правый fade */
+  &::after {
+    right: 0;
+    background: linear-gradient(
+      to right,
+      rgba(5, 8, 22, 0) 0%,
+      rgba(15, 15, 20, 0.97) 100%
+    );
+  }
+
+  /* Fade в зависимости от положения скролла */
+
+  &[data-scroll="start"]::after {
+    opacity: 1;
+  }
+
+  &[data-scroll="middle"]::before,
+  &[data-scroll="middle"]::after {
+    opacity: 1;
+  }
+
+  &[data-scroll="end"]::before {
+    opacity: 1;
+  }
+
+  /* На desktop fade отключаем */
+  @media (min-width: 900px) {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+/* ===================== Список категорий ===================== */
+
+.category-filter__list {
+  display: flex;
+  gap: var(--space-s);
+
+  /* увеличиваем зону прокрутки */
+  padding: var(--space-s) var(--space-xl) var(--space-m) 0;
+  /* ↑ больше vertical-padding → лучше UX */
+
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  scroll-snap-type: x mandatory;
+}
+
+.category-filter__list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===================== Кнопки категорий ===================== */
+
+.category-filter__item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+
+  padding: var(--space-s) var(--space-l); /* ↑ увеличенная зона кнопки */
+  border-radius: var(--radius-m);
+  font-size: 1rem;
+  font-weight: 600;
+
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  border: 1px solid transparent;
+
+  transition: box-shadow 0.25s ease, color 0.25s ease; // 🔥 background-color убрали
+
+  position: relative;
+  z-index: 2; /* ниже fade */
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.category-filter__item--active {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(255, 128, 40, 0.5);
+  z-index: 2;
+}

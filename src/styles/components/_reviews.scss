@@ -1,0 +1,114 @@
+.reviews {
+  --reviews-gap: clamp(16px, 3vw, 32px);
+
+  padding-block: clamp(32px, 6vw, 72px);
+
+  &__slider {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  &__viewport {
+    overflow: hidden;
+    position: relative;
+    touch-action: pan-y;
+    padding-block: var(--space-m);
+  }
+
+  &__list {
+    display: flex;
+    gap: var(--reviews-gap);
+    transition: transform 0.35s ease;
+    will-change: transform;
+  }
+
+  /* точки */
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    transition: width 0.25s ease, background 0.25s ease;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  &__dot.is-active {
+    width: 18px;
+    background: var(--color-primary, #ff8a00);
+    border-color: var(--color-primary, #ff8a00);
+  }
+
+  /* ===== CARD ===== */
+  &__item {
+    flex: 0 0 100%;
+    background: var(--color-surface);
+    padding: var(--space-l);
+    border-radius: var(--radius-l);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0.85;
+  }
+
+  &__item.is-active {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  @media (min-width: 640px) {
+    &__item {
+      flex-basis: calc((100% - var(--reviews-gap)) / 2);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    &__item {
+      flex-basis: calc((100% - (var(--reviews-gap) * 2)) / 3);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: var(--space-m);
+  }
+
+  &__rating {
+    display: flex;
+    gap: 4px;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+  }
+}

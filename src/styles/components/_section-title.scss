@@ -1,0 +1,18 @@
+.section-header {
+  margin-bottom: clamp(var(--space-s), 2vw, var(--space-l));
+}
+
+.section-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.section-title--center {
+  text-align: center;
+}
+.section-title--small {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+}

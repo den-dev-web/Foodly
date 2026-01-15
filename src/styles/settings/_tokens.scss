@@ -1,0 +1,45 @@
+:root {
+  --color-bg: #050816;
+  --color-surface: #0b1020;
+  --color-surface-alt: #111827;
+  --color-primary: #f97316;
+  --color-primary-soft: rgba(249, 115, 22, 0.1);
+  --color-secondary: #f97316;
+  --color-text: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-border: rgba(148, 163, 184, 0.4);
+
+  --radius-xs: 6px;
+  --radius-s: 10px;
+  --radius-m: 16px;
+  --radius-l: 24px;
+
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+  --shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+
+  --layout-container-max: 1200px;
+  --layout-container-padding: 24px;
+
+  --icon-size-m: 32px;
+  --icon-size-s: 22px;
+
+  --card-min-width: 260px;
+  --hero-content-max: 520px;
+  --hero-subtext-max: 480px;
+  --hero-media-max: 560px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* можно сделать вариации */
+  }
+}

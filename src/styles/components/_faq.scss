@@ -1,0 +1,76 @@
+.faq {
+  padding-block: clamp(32px, 6vw, 64px);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  /* ===== FAQ ITEM ===== */
+  &__item {
+    background: var(--color-surface);
+    border-radius: var(--radius-m);
+    padding: var(--space-m) var(--space-l);
+    border: 1px solid var(--color-border);
+    transition: background-color 0.25s ease;
+
+    &[data-state="open"] {
+      background: var(--color-surface-alt);
+    }
+  }
+
+  /* ===== QUESTION BUTTON ===== */
+  &__question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-text);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    transition: color 0.25s ease;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 4px;
+    }
+  }
+
+  /* ===== ICON ROTATION ===== */
+  &__icon {
+    font-size: 1.3rem;
+    transition: transform 0.25s ease;
+  }
+
+  [data-state="open"] .faq__icon {
+    transform: rotate(45deg);
+  }
+
+  /* ===== ANSWER PANEL ===== */
+  &__answer {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+
+    &[data-open="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    p {
+      padding-top: var(--space-m);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+  }
+}

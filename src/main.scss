@@ -1,0 +1,35 @@
+// SETTINGS
+@use "./styles/settings/fonts";
+@use "./styles/settings/tokens";
+
+// GENERIC
+@use "./styles/generic/normalize";
+@use "./styles/generic/base";
+@use "./styles/generic/reset";
+
+// ELEMENTS
+/*@use "./styles/elements/typography";
+@use "./styles/elements/links";
+@use "./styles/elements/forms";*/
+
+// OBJECTS
+/*@use "./styles/objects/layout";
+@use "./styles/objects/sections";*/
+
+// COMPONENTS
+@use "./styles/components/header";
+@use "./styles/components/hero";
+@use "./styles/components/section-title";
+@use "./styles/components/category-filter";
+@use "./styles/components/product-card";
+@use "./styles/components/catalog";
+@use "./styles/components/cart";
+@use "./styles/components/benefits";
+@use "./styles/components/faq";
+@use "./styles/components/reviews";
+@use "./styles/components/footer";
+
+// UTILITIES
+/*@use "./styles/utilities/visually-hidden";
+@use "./styles/utilities/spacing";
+@use "./styles/utilities/a11y";*/
