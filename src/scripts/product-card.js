@@ -63,7 +63,16 @@ export function createProductCard(product, cart) {
 
         <div class="product-card__counter" hidden>
           <button data-product-decrease class="product-card__counter-btn">-</button>
-          <span data-product-qty class="product-card__counter-value">1</span>
+          <input
+            data-product-qty
+            class="product-card__counter-value"
+            type="number"
+            min="0"
+            step="1"
+            inputmode="numeric"
+            aria-label="Количество"
+            value="1"
+          />
           <button data-product-increase class="product-card__counter-btn">+</button>
         </div>
 
@@ -78,7 +87,7 @@ export function createProductCard(product, cart) {
 function initProductCardEvents(card, cart, product, hasVariants) {
   const addBtn = card.querySelector("[data-product-add]");
   const counter = card.querySelector(".product-card__counter");
-  const qtyValue = card.querySelector("[data-product-qty]");
+  const qtyInput = card.querySelector("[data-product-qty]");
   const plus = card.querySelector("[data-product-increase]");
   const minus = card.querySelector("[data-product-decrease]");
   const variantButtons = Array.from(
@@ -102,10 +111,11 @@ function initProductCardEvents(card, cart, product, hasVariants) {
     if (qty === 0) {
       addBtn.hidden = false;
       counter.hidden = true;
+      if (qtyInput) qtyInput.value = "1";
     } else {
       addBtn.hidden = true;
       counter.hidden = false;
-      qtyValue.textContent = qty;
+      if (qtyInput) qtyInput.value = String(qty);
     }
   };
 
@@ -130,6 +140,30 @@ function initProductCardEvents(card, cart, product, hasVariants) {
   minus.addEventListener("click", () => {
     cart.remove(id, currentVariantId);
     updateState();
+  });
+
+  const applyQtyFromInput = () => {
+    if (!qtyInput) return;
+    const raw = qtyInput.value.trim();
+    if (raw === "") {
+      updateState();
+      return;
+    }
+    const qty = Number.parseInt(raw, 10);
+    if (Number.isNaN(qty)) {
+      updateState();
+      return;
+    }
+    cart.setQty(id, currentVariantId, qty);
+    updateState();
+  };
+
+  qtyInput?.addEventListener("change", applyQtyFromInput);
+  qtyInput?.addEventListener("blur", applyQtyFromInput);
+  qtyInput?.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    applyQtyFromInput();
   });
 
   variantButtons.forEach((btn) => {

@@ -31,6 +31,17 @@ export class Cart {
     this.notify();
   }
 
+  setQty(productId, variantId = "", qty = 0) {
+    const key = this.key(productId, variantId);
+    const normalized = Number.isFinite(qty) ? Math.floor(qty) : 0;
+    if (normalized <= 0) {
+      delete this.items[key];
+    } else {
+      this.items[key] = normalized;
+    }
+    this.notify();
+  }
+
   remove(productId, variantId = "") {
     const key = this.key(productId, variantId);
     if (!this.items[key]) return;
@@ -176,7 +187,15 @@ export function initCartUI(cart) {
 
         <div class="cart-item__counter">
           <button class="cart-item__btn" data-cart-decrease>-</button>
-          <span class="cart-item__qty">${qty}</span>
+          <input
+            class="cart-item__qty"
+            type="number"
+            min="0"
+            step="1"
+            inputmode="numeric"
+            aria-label="Количество"
+            value="${qty}"
+          />
           <button class="cart-item__btn" data-cart-increase>+</button>
         </div>
       `;
@@ -189,6 +208,29 @@ export function initCartUI(cart) {
       li.querySelector("[data-cart-increase]").addEventListener("click", () =>
         cart.add(productId, variantId)
       );
+
+      const qtyInput = li.querySelector(".cart-item__qty");
+      const applyQtyFromInput = () => {
+        const raw = qtyInput.value.trim();
+        if (raw === "") {
+          qtyInput.value = String(qty);
+          return;
+        }
+        const nextQty = Number.parseInt(raw, 10);
+        if (Number.isNaN(nextQty)) {
+          qtyInput.value = String(qty);
+          return;
+        }
+        cart.setQty(productId, variantId, nextQty);
+      };
+
+      qtyInput.addEventListener("change", applyQtyFromInput);
+      qtyInput.addEventListener("blur", applyQtyFromInput);
+      qtyInput.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        applyQtyFromInput();
+      });
 
       itemsList.append(li);
     });

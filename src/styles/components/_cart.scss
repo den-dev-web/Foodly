@@ -134,6 +134,19 @@
 
   .cart-item__qty {
     font-weight: 600;
+    width: var(--space-l);
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: inherit;
+    outline: none;
+    -moz-appearance: textfield;
+  }
+
+  .cart-item__qty::-webkit-outer-spin-button,
+  .cart-item__qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   /* ===== FOOTER ===== */

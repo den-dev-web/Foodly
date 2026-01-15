@@ -120,26 +120,60 @@ export function initProductCard(cardElement, cart) {
 
   if (!id) return;
 
+  const setQtyDisplay = (value) => {
+    if (!qtyValue) return;
+    if (qtyValue instanceof HTMLInputElement) {
+      qtyValue.value = String(value);
+    } else {
+      qtyValue.textContent = value;
+    }
+  };
+
+  const applyQtyFromInput = () => {
+    if (!(qtyValue instanceof HTMLInputElement)) return;
+    const raw = qtyValue.value.trim();
+    if (raw === "") {
+      setQtyDisplay(cart.items[id] || 1);
+      return;
+    }
+    const qty = Number.parseInt(raw, 10);
+    if (Number.isNaN(qty)) {
+      setQtyDisplay(cart.items[id] || 1);
+      return;
+    }
+    cart.setQty(id, "", qty);
+    setQtyDisplay(cart.items[id] || 1);
+  };
+
   addBtn.addEventListener("click", () => {
     cart.add(id);
-    qtyValue.textContent = cart.items[id];
+    setQtyDisplay(cart.items[id]);
     addBtn.hidden = true;
     counter.hidden = false;
   });
 
   increase.addEventListener("click", () => {
     cart.add(id);
-    qtyValue.textContent = cart.items[id];
+    setQtyDisplay(cart.items[id]);
   });
 
   decrease.addEventListener("click", () => {
     cart.remove(id);
-    qtyValue.textContent = cart.items[id] || 0;
+    setQtyDisplay(cart.items[id] || 0);
 
     if (!cart.items[id]) {
       addBtn.hidden = false;
       counter.hidden = true;
+      setQtyDisplay(1);
     }
+  });
+
+  qtyValue?.addEventListener("change", applyQtyFromInput);
+  qtyValue?.addEventListener("blur", applyQtyFromInput);
+  qtyValue?.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    applyQtyFromInput();
   });
 }
 
