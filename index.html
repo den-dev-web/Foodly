@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/Foodly/assets/icons/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Foodly — быстрая доставка пиццы, суши, бургеров и десертов по городу."
+    />
+    <title>Foodly — доставка еды</title>
+    <script type="module" crossorigin src="/Foodly/assets/index-D-oOJBXg.js"></script>
+    <link rel="stylesheet" crossorigin href="/Foodly/assets/style-EBkmfN32.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- HEADER -->
+      <header class="header" data-section="header">
+        <div class="o-container header__inner">
+          <a class="header__logo" href="#hero">
+            <img
+              src="/Foodly/assets/icons/logo.png"
+              alt="Foodly"
+              class="header__logo-icon"
+              width="32"
+              height="32"
+            />
+            <span class="header__logo-text">Foodly</span>
+          </a>
+
+          <nav class="header__nav" aria-label="Основная навигация">
+            <button
+              class="header__burger"
+              type="button"
+              aria-label="Открыть меню"
+              aria-expanded="false"
+              aria-controls="header-menu"
+            >
+              <span class="header__burger-line"></span>
+              <span class="header__burger-line"></span>
+            </button>
+
+            <ul class="header__menu" id="header-menu" aria-hidden="true">
+              <li class="header__menu-item">
+                <a href="#catalog" class="header__link">Меню</a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#benefits" class="header__link">Преимущества</a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#reviews" class="header__link">Отзывы</a>
+              </li>
+              <li class="header__menu-item">
+                <a href="#faq" class="header__link">FAQ</a>
+              </li>
+            </ul>
+          </nav>
+
+          <button
+            class="header__cart-button"
+            type="button"
+            aria-label="Открыть корзину"
+            data-cart-open
+          >
+            <img
+              src="/Foodly/assets/icons/cart.svg"
+              alt="Корзина"
+              class="header__cart-icon"
+              width="32"
+              height="32"
+            />
+            <span class="header__cart-counter" data-cart-count>0</span>
+          </button>
+        </div>
+        <div class="header__overlay" data-header-overlay></div>
+      </header>
+
+      <main id="main" class="main">
+        <!-- HERO -->
+        <section id="hero" class="hero" aria-labelledby="hero-title">
+          <div class="o-container hero__inner">
+            <div class="hero__content">
+              <h1 id="hero-title" class="hero__title">
+                Доставка любимой еды за&nbsp;30&nbsp;минут
+              </h1>
+              <p class="hero__subtitle">
+                Пицца, суши, бургеры, десерты и напитки — в один клик.
+              </p>
+
+              <div class="hero__actions">
+                <a href="#catalog" class="button button--primary">
+                  Смотреть меню
+                </a>
+                <button
+                  type="button"
+                  class="button button--secondary"
+                  data-scroll-to="#benefits"
+                >
+                  Почему Foodly?
+                </button>
+              </div>
+
+              <ul class="hero__stats" aria-label="Краткая статистика сервиса">
+                <li class="hero__stat">
+                  <span class="hero__stat-value">30&nbsp;мин</span>
+                  <span class="hero__stat-label">Среднее время доставки</span>
+                </li>
+                <li class="hero__stat">
+                  <span class="hero__stat-value">4.9</span>
+                  <span class="hero__stat-label">Оценка по отзывам</span>
+                </li>
+                <li class="hero__stat">
+                  <span class="hero__stat-value">120+</span>
+                  <span class="hero__stat-label">Блюд в меню</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="hero__media" aria-hidden="true">
+              <!-- Картинка/иллюстрация с aspect-ratio -->
+              <picture class="hero__image-wrapper">
+                <source srcset="/Foodly/assets/images/hero.avif" type="image/avif" />
+                <source srcset="/Foodly/assets/images/hero.webp" type="image/webp" />
+                <img
+                  src="/Foodly/assets/images/hero.jpg"
+                  class="hero__image"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+          </div>
+        </section>
+
+        <!-- КАТАЛОГ -->
+        <section id="catalog" class="catalog" aria-labelledby="catalog-title">
+          <div class="o-container">
+            <header class="section-header">
+              <h2 id="catalog-title" class="section-title">Меню</h2>
+              <p class="section-subtitle">
+                Выбирай блюда, добавляй в корзину и оформляй заказ.
+              </p>
+            </header>
+
+            <!-- КАТЕГОРИИ (ФИЛЬТРЫ) -->
+            <div class="category-filter">
+              <div
+                class="category-filter__list"
+                role="tablist"
+                aria-label="Фильтр по категориям блюд"
+              >
+                <button
+                  class="category-filter__item category-filter__item--active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  data-category="all"
+                >
+                  Все
+                </button>
+                <button
+                  class="category-filter__item"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-category="pizza"
+                >
+                  Пицца
+                </button>
+                <button
+                  class="category-filter__item"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-category="sushi"
+                >
+                  Суши
+                </button>
+                <button
+                  class="category-filter__item"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-category="burgers"
+                >
+                  Бургеры
+                </button>
+                <button
+                  class="category-filter__item"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-category="desserts"
+                >
+                  Десерты
+                </button>
+                <button
+                  class="category-filter__item"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-category="drinks"
+                >
+                  Напитки
+                </button>
+              </div>
+            </div>
+
+            <!-- Скелетоны при загрузке -->
+            <div class="catalog__grid" data-catalog-skeleton>
+              <article
+                class="product-card product-card--skeleton"
+                aria-hidden="true"
+              >
+                <div class="product-card__image-wrapper skeleton-box"></div>
+
+                <div class="product-card__body">
+                  <div class="skeleton-line skeleton-line--title"></div>
+                  <div class="skeleton-line skeleton-line--text"></div>
+
+                  <div class="product-card__bottom">
+                    <div class="skeleton-line skeleton-line--price"></div>
+                    <div class="skeleton-button"></div>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="product-card product-card--skeleton"
+                aria-hidden="true"
+              >
+                <div class="product-card__image-wrapper skeleton-box"></div>
+
+                <div class="product-card__body">
+                  <div class="skeleton-line skeleton-line--title"></div>
+                  <div class="skeleton-line skeleton-line--text"></div>
+
+                  <div class="product-card__bottom">
+                    <div class="skeleton-line skeleton-line--price"></div>
+                    <div class="skeleton-button"></div>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="product-card product-card--skeleton"
+                aria-hidden="true"
+              >
+                <div class="product-card__image-wrapper skeleton-box"></div>
+
+                <div class="product-card__body">
+                  <div class="skeleton-line skeleton-line--title"></div>
+                  <div class="skeleton-line skeleton-line--text"></div>
+
+                  <div class="product-card__bottom">
+                    <div class="skeleton-line skeleton-line--price"></div>
+                    <div class="skeleton-button"></div>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="product-card product-card--skeleton"
+                aria-hidden="true"
+              >
+                <div class="product-card__image-wrapper skeleton-box"></div>
+
+                <div class="product-card__body">
+                  <div class="skeleton-line skeleton-line--title"></div>
+                  <div class="skeleton-line skeleton-line--text"></div>
+
+                  <div class="product-card__bottom">
+                    <div class="skeleton-line skeleton-line--price"></div>
+                    <div class="skeleton-button"></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Реальные карточки (рендерятся JS) -->
+            <div class="catalog__grid" data-catalog-grid hidden></div>
+            <button
+              class="catalog__show-more button button--secondary"
+              data-show-more
+              hidden
+            >
+              Показать ещё
+            </button>
+          </div>
+        </section>
+
+        <!-- ПРЕИМУЩЕСТВА -->
+        <section
+          id="benefits"
+          class="benefits"
+          aria-labelledby="benefits-title"
+        >
+          <div class="o-container">
+            <header class="section-header">
+              <h2 id="benefits-title" class="section-title">Почему Foodly?</h2>
+            </header>
+
+            <div class="benefits__grid">
+              <article class="benefits__item" data-benefit>
+                <h3 class="benefits__item-title">Супербыстрая доставка</h3>
+                <p class="benefits__item-text">
+                  В среднем за 30 минут по всему городу.
+                </p>
+              </article>
+
+              <article class="benefits__item" data-benefit>
+                <h3 class="benefits__item-title">Контроль качества</h3>
+                <p class="benefits__item-text">
+                  Работаем только с проверенными кухнями и поставщиками.
+                </p>
+              </article>
+
+              <article class="benefits__item" data-benefit>
+                <h3 class="benefits__item-title">Прозрачные цены</h3>
+                <p class="benefits__item-text">
+                  Без скрытых комиссий и надбавок.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ОТЗЫВЫ -->
+        <section id="reviews" class="reviews" aria-labelledby="reviews-title">
+          <div class="o-container">
+            <header class="section-header">
+              <h2 id="reviews-title" class="section-title">Отзывы</h2>
+            </header>
+
+            <div class="reviews__slider" data-reviews-slider>
+              <div class="reviews__viewport">
+                <div class="reviews__list" data-reviews-track>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Анастасии"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Мария</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Очень быстро доставили, еда горячая и вкусная! Заказываю
+                      уже в третий раз.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Анастасии"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Анастасия</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Доставили за 25 минут, пицца горячая, тесто мягкое. Люблю,
+                      что можно добавить комментарий к заказу.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Михаила"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Михаил</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Удобное меню и нормальные цены. Курьер позвонил заранее,
+                      все привез в термосумке.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 4 из 5">
+                      ★★★★☆
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Елены"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Елена</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Роллы свежие, рис не переварен. Аккуратная упаковка,
+                      палочки и соусы положили без напоминаний.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Сергея"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Сергей</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Приложение не глючит, оплата через Apple Pay работает.
+                      Бургеры привезли без смятых булок.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 4 из 5">
+                      ★★★★☆
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Виктории"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Виктория</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Часто беру десерты, все приезжает холодным и без
+                      растаявшей глазури. Спасибо за аккуратность!
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Артема"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Артем</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Заказывал ночью, доставили за 35 минут. Понравилось, что
+                      статус заказа показывается в реальном времени.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Натальи"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Наталья</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Люблю раздел «Комбо». Соотношение цена/качество лучше, чем
+                      у конкурентов, и акции часто обновляются.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 4 из 5">
+                      ★★★★☆
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Павла"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Павел</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Понравилась поддержка: помогли изменить адрес уже после
+                      оформления, курьер быстро сориентировался.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Ксении"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Ксения</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Удобно, что есть безналичные чаевые. Курьер был вежлив,
+                      привез заказ до двери, несмотря на дождь.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 5 из 5">
+                      ★★★★★
+                    </div>
+                  </article>
+                  <article class="reviews__item" data-review-slide>
+                    <div class="reviews__header">
+                      <img
+                        class="reviews__avatar"
+                        src="/Foodly/assets/avatars/default.svg"
+                        alt="Аватар Дмитрия"
+                        loading="lazy"
+                        decoding="async"
+                        width="48"
+                        height="48"
+                      />
+                      <span class="reviews__name">Дмитрий</span>
+                    </div>
+
+                    <p class="reviews__text">
+                      Доставка не опаздывает, уведомления приходят вовремя.
+                      Трекинг курьера помогает планировать время.
+                    </p>
+
+                    <div class="reviews__rating" aria-label="Оценка 4 из 5">
+                      ★★★★☆
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <div class="reviews__dots" data-reviews-dots></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="faq" aria-labelledby="faq-title">
+          <div class="o-container">
+            <header class="section-header">
+              <h2 id="faq-title" class="section-title">FAQ</h2>
+            </header>
+
+            <div class="faq__list" role="list">
+              <div class="faq__item" data-state="closed">
+                <button
+                  class="faq__question"
+                  aria-expanded="false"
+                  aria-controls="faq-1"
+                >
+                  Что входит в доставку?
+                  <span class="faq__icon">+</span>
+                </button>
+
+                <div
+                  id="faq-1"
+                  class="faq__answer"
+                  role="region"
+                  aria-hidden="true"
+                >
+                  <p>
+                    Мы доставляем блюда в термосумках, чтобы еда приехала
+                    горячей и безопасной.
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq__item" data-state="closed">
+                <button
+                  class="faq__question"
+                  aria-expanded="false"
+                  aria-controls="faq-2"
+                >
+                  Сколько времени занимает доставка?
+                  <span class="faq__icon">+</span>
+                </button>
+
+                <div
+                  id="faq-2"
+                  class="faq__answer"
+                  role="region"
+                  aria-hidden="true"
+                >
+                  <p>
+                    В среднем 30 минут по городу. Точное время показываем при
+                    оформлении заказа.
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq__item" data-state="closed">
+                <button
+                  class="faq__question"
+                  aria-expanded="false"
+                  aria-controls="faq-3"
+                >
+                  Как оплатить заказ?
+                  <span class="faq__icon">+</span>
+                </button>
+
+                <div
+                  id="faq-3"
+                  class="faq__answer"
+                  role="region"
+                  aria-hidden="true"
+                >
+                  <p>
+                    Доступны оплата картой онлайн, Apple Pay/Google Pay и
+                    наличными курьеру.
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq__item" data-state="closed">
+                <button
+                  class="faq__question"
+                  aria-expanded="false"
+                  aria-controls="faq-4"
+                >
+                  Можно ли изменить или отменить заказ?
+                  <span class="faq__icon">+</span>
+                </button>
+
+                <div
+                  id="faq-4"
+                  class="faq__answer"
+                  role="region"
+                  aria-hidden="true"
+                >
+                  <p>
+                    Да, свяжитесь с поддержкой в течение 5 минут после
+                    оформления, мы скорректируем заказ.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="o-container footer__inner">
+          <p class="footer__copy">
+            © <span data-year></span> Foodly. Все права защищены.
+          </p>
+
+          <nav class="footer__nav" aria-label="Навигация в футере">
+            <a href="#hero" class="footer__link">Наверх</a>
+            <a href="#catalog" class="footer__link">Меню</a>
+            <a href="#faq" class="footer__link">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <!-- КОРЗИНА (OFFCANVAS / MODAL) -->
+    <div
+      class="cart"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cart-title"
+      hidden
+      data-cart
+    >
+      <div class="cart__backdrop" data-cart-close></div>
+
+      <div class="cart__panel" role="document">
+        <header class="cart__header">
+          <h2 id="cart-title" class="cart__title">Корзина</h2>
+          <button
+            class="cart__close button button--icon"
+            type="button"
+            aria-label="Закрыть корзину"
+            data-cart-close
+          >
+            ✕
+          </button>
+        </header>
+
+        <div class="cart__body">
+          <ul class="cart__items" data-cart-items>
+            <!-- Позиции корзины рендерятся через JS -->
+          </ul>
+
+          <p class="cart__empty" data-cart-empty>
+            В корзине пока нет блюд. Добавь что-нибудь из меню.
+          </p>
+        </div>
+
+        <footer class="cart__footer">
+          <div class="cart__total">
+            <span class="cart__total-label">Итого:</span>
+            <span class="cart__total-value" data-cart-total>0 ₴</span>
+          </div>
+
+          <a
+            href="checkout.html"
+            class="button button--primary cart__checkout-link"
+          >
+            Оформить заказ
+          </a>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Статус для форм / анонсер -->
+    <div class="visually-hidden" aria-live="polite" data-status-announcer></div>
+
+    <!-- JS точка входа -->
+  </body>
+</html>
